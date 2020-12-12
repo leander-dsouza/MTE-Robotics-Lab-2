@@ -9,20 +9,21 @@ A collective codebase inclusive of all experiments and post lab exercises
       
 * Build the newly cloned packages at the root of your workspace:
 
-      catkin_make
+      cd ../ && catkin_make
       
-* Source your `~/.bashrc` file (*This is assuming you have added the $WORKSPACE/devel sourcing command in it*)
+* To install all the dependencies of your workspace:
 
-      source ~/.bashrc
+      rosdep install --from-paths src --ignore-src -r -y   
 
-## Post Lab Exercises:
+* To prevent repeated sourcing of your workspace's devel bash scripts, add the corresponding line and finally execute the entire bash script:
 
-* Day 1:
+      echo "source $WORKSPACE_DIR/devel/setup.bash" >> ~/.bashrc && source ~/.bashrc
 
-    * [Turtle Tracing the D](https://github.com/leander-dsouza/MTE-Robotics-Lab-2/blob/main/exp_2/move_robot/scripts/D.py)
-    * [Turtle Tracing a Hexagon](https://github.com/leander-dsouza/MTE-Robotics-Lab-2/blob/main/exp_2/move_robot/scripts/hex.py)
-    
+## Usage       
+
+To learn more about the packages and how to run them, refer the [Wiki](https://github.com/leander-dsouza/MTE-Robotics-Lab-2/wiki) page of this repository.
 
 ## Disclaimer
 
 Make sure you change the shebang from `python3` to `python`, as I'm using noetic-distro
+
