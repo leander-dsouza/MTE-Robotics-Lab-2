@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+   <!-- values passed by command line input -->     
+   <arg name="model" default="dd_robot.gazebo" />
+
+   <!-- set these parameters on Parameter Server -->
+   <param name="robot_description" textfile="$(find autorickshaw)/urdf/$(arg model)" />
+
+   <arg name="use_gui" default="true" doc="Should the joint_state_publisher use a GUI for controlling joint states" />
+
+   <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" unless="$(arg use_gui)" />
+
+   <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen" if="$(arg use_gui)" />
+
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autorickshaw)/rviz/urdf.rviz" required="true" />
+   <!-- (required = "true") if rviz dies, entire roslaunch will be killed -->
+</launch>
