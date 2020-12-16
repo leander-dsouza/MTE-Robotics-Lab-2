@@ -20,7 +20,7 @@ A collective codebase inclusive of all experiments and post lab exercises
       
 * Install `python3-rosdep` for resolving your workspaces' dependencies:
 
-      sudo apt-get install python3-rosdep
+      sudo apt-get install python3-rosdep && sudo rosdep init && rosdep update
       
 * To install all the dependencies of your workspace:
 
