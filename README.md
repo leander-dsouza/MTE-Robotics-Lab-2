@@ -18,7 +18,7 @@ A collective codebase inclusive of all experiments and post lab exercises
 
       cd ../ && catkin_make
       
-* Install `python3-rosdep` for resolving your workspaces' dependencies:
+* Install `python3-rosdep` for resolving your workspaces' dependencies (Don't install `rosdep2` as it will break your ros system):
 
       sudo apt-get install python3-rosdep && sudo rosdep init && rosdep update
       
