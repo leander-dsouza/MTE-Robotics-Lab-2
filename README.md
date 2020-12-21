@@ -1,6 +1,6 @@
 <img src="https://img.shields.io/badge/license-MIT-green&style=plastic"> <img src="https://img.shields.io/badge/noetic-passing-green&style=plastic">
 
-# MTE-Robotics-Lab-2
+# MTE-Robotics-Lab-2 - Group-1 Miniproject 
 
 ![Python](https://img.shields.io/badge/-Python-black?style=plastic&logo=Python)
 <img alt="Ubuntu" src="https://img.shields.io/badge/-Ubuntu-E95420?style=plastic&logo=Ubuntu&logoColor=white">
@@ -12,7 +12,7 @@ A collective codebase inclusive of all experiments and post lab exercises
 
 * Clone the repository at your `$WORKSPACE/src`:
 
-      git clone https://github.com/leander-dsouza/MTE-Robotics-Lab-2.git
+      git clone --single-branch --branch=LSD https://github.com/leander-dsouza/MTE-Robotics-Lab-2.git
       
 * Build the newly cloned packages at the root of your workspace:
 
