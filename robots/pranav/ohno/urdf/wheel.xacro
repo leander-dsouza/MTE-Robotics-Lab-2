@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot name="lols"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- <xacro:include filename="$(find ohno)/urdf/materials.xacro"/> -->
+    <xacro:macro name='define_wheel' params='name_a name_b rad thicc origin_xyz'>
+        <link name="${name_a}">
+
+            <inertial>
+                <mass value="0.5"/>
+                <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/>
+            </inertial>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 1.57 1.57"/>
+                <geometry>
+                    <cylinder radius="${rad}" length="${thicc}"/>
+                </geometry>
+            </collision>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 1.57 1.57"/>
+                <geometry>
+                    <cylinder radius="${rad}" length="${thicc}"/>
+                </geometry>
+                <material name="red"/>
+            </visual>
+        </link>
+
+        <joint name="${name_b}" type="continuous">
+            <origin xyz="${origin_xyz}" rpy="0 0 0"/>
+            <parent link="base_link"/>
+            <child link="${name_a}"/>
+            <axis xyz="0 1 0"/>
+        </joint>
+    </xacro:macro>
+   
+</robot>

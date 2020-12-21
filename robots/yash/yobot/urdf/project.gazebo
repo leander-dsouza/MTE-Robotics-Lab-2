@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="skid_steer_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <gazebo reference="chassis">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="front_wheel_left">
+    <material>Gazebo/white</material>
+  </gazebo>
+
+  <gazebo reference="front_wheel_right">
+    <material>Gazebo/white</material>
+  </gazebo>
+  
+  <gazebo reference="back_wheel_left">
+    <material>Gazebo/white</material>
+  </gazebo>
+  
+  <gazebo reference="back_wheel_right">
+    <material>Gazebo/white</material>
+  </gazebo>
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>front_wheel_left_hinge</leftFrontJoint>
+      <rightFrontJoint>front_wheel_right_hinge</rightFrontJoint>
+      <leftRearJoint>back_wheel_left_hinge</leftRearJoint>
+      <rightRearJoint>back_wheel_right_hinge</rightRearJoint>
+      <wheelSeparation>chassis_breadth</wheelSeparation>
+      <wheelDiameter>2*wheel_radius</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>1000*chassis_mass</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>false</broadcastTF>
+    </plugin>
+  </gazebo>
+</robot>

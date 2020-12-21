@@ -1,0 +1,47 @@
+<?xml version='1.0'?>
+
+<robot name="skid_steer_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="pi" value="3.1415926535897931"/>
+  <xacro:property name="DEG_TO_RAD" value="${PI/180.0}" />
+
+  <xacro:property name="wheel_radius" value="0.2"/>
+  <xacro:property name="wheel_thickness" value="0.2" />
+  <xacro:property name="wheel_mass" value="0.2" />
+  <xacro:property name="chassis_length" value="1" />
+  <xacro:property name="chassis_breadth" value="0.75" />
+  <xacro:property name="chassis_height" value="0.5" />
+  <xacro:property name="chassis_mass" value="0.5" />
+
+  <xacro:include filename="$(find yobot)/urdf/project.gazebo" />
+  <xacro:include filename="$(find yobot)/urdf/materials.xacro" />
+  <xacro:include filename="$(find yobot)/urdf/macros.xacro" />
+  
+
+    <link name="chassis">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+        </geometry>
+        <material name="Black"/>
+      </visual>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="${chassis_mass}"/>
+        <xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_breadth}" z="${chassis_height}"/>
+      </inertial>
+  </link>
+  <xacro:define_wheel pos_fb="front" pos_lr="left" lr="1" fb="1" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}" />
+  <xacro:define_wheel pos_fb="front" pos_lr="right" lr="-1" fb="1" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}" />
+  <xacro:define_wheel pos_fb="back" pos_lr="left" lr="1" fb="-1" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}" />
+  <xacro:define_wheel pos_fb="back" pos_lr="right" lr="-1" fb="-1" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}" />
+</robot>

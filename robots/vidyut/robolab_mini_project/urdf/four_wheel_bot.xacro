@@ -1,0 +1,46 @@
+<?xml version='1.0'?>
+
+<robot name="four_wheel_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:property name="basem" value="5"/>
+<xacro:property name="baselw" value="1"/>
+<xacro:property name="baseh" value="0.25"/>
+
+<xacro:include filename="$(find robolab_mini_project)/urdf/materials.xacro" />
+<xacro:include filename="$(find robolab_mini_project)/urdf/macros.xacro" />
+
+  <link name="base_link">
+  <pose>0 0 3 0 0 0</pose>
+    <visual>
+      <material name="orange">
+      	<color rgba="1 0.6 0 1"/>
+      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="${baselw} ${baselw} ${baseh}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="${baselw} ${baselw} ${baseh}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${basem}"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13"/>
+    </inertial>
+
+  </link>
+
+  <xacro:wheel_link link_name="right_wheel_1"/>
+  <xacro:wheel_link link_name="right_wheel_2"/>
+  <xacro:wheel_link link_name="left_wheel_1"/>
+  <xacro:wheel_link link_name="left_wheel_2"/>
+
+  <xacro:joint_link joint_name="right_joint_1" child="right_wheel_1" origin_xyz="0.25 -0.55 0.025"/>
+  <xacro:joint_link joint_name="right_joint_2" child="right_wheel_2" origin_xyz="-0.25 -0.55 0.025"/>
+  <xacro:joint_link joint_name="left_joint_1" child="left_wheel_1" origin_xyz="0.25 0.55 0.025"/>
+  <xacro:joint_link joint_name="left_joint_2" child="left_wheel_2" origin_xyz="-0.25 0.55 0.025"/>
+
+</robot>

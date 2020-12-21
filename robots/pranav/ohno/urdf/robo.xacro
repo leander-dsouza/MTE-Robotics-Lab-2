@@ -1,0 +1,49 @@
+<?xml version='1.0'?>
+<robot name="lols" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="wheel_radius" value="0.2"/>
+  <xacro:property name="wheel_thickness" value="0.1" />
+  <xacro:property name="wheel_mass" value="0.2" />
+  <xacro:property name="chassis_length" value="1" />
+  <xacro:property name="chassis_breadth" value="0.5" />
+  <xacro:property name="chassis_height" value="0.25" />
+  <xacro:property name="chassis_mass" value="5" />
+
+  <xacro:include filename="$(find ohno)/urdf/materials.xacro"/>
+  <xacro:include filename="$(find ohno)/urdf/wheel.xacro"/>
+  <xacro:include filename="$(find ohno)/urdf/robo.gazebo"/>
+
+
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <pose>0 0 3 0 0 0</pose>
+
+    <visual>
+      <material name="white"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0" />
+      <geometry>
+        <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+      </geometry>
+    </visual>
+    <!-- Base collision, mass and inertia -->
+
+    <collision>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <geometry>
+        <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="${chassis_mass}"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13"/>
+    </inertial>
+  </link>
+
+  <xacro:define_wheel name_a="front_right" name_b="front_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 -0.3 0.05"/>
+  <xacro:define_wheel name_a="front_left" name_b="front_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 0.3 0.05"/>
+  <xacro:define_wheel name_a="back_right" name_b="back_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 -0.3 0.05"/>
+  <xacro:define_wheel name_a="back_left" name_b="back_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 0.3 0.05"/>
+
+</robot>

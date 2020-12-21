@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+
+<robot name="skid_steer_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ 
+  <xacro:property name="wheel_mass" value="0.2"/>
+  <xacro:property name="wheel_radius" value="0.1"/>
+  <xacro:property name="wheel_thickness" value="0.04" />
+  <xacro:property name="wheel_mass" value="0.2" />
+  <xacro:property name="chassis_length" value="0.5" />
+  <xacro:property name="chassis_breadth" value="0.3" />
+  <xacro:property name="chassis_height" value="0.07" />
+  <xacro:property name="chassis_mass" value="5" />
+
+  <gazebo reference="link_chassis">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+  <gazebo reference="link_front_left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_front_right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_back_left_wheel">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="link_back_right_wheel">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>joint_front_left_wheel</leftFrontJoint>
+      <rightFrontJoint>joint_front_right_wheel</rightFrontJoint>
+      <leftRearJoint>joint_back_left_wheel</leftRearJoint>
+      <rightRearJoint>joint_back_right_wheel</rightRearJoint>
+      <wheelSeparation>${chassis_breadth}</wheelSeparation>
+      <wheelDiameter>${wheel_radius*2}</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>20</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>false</broadcastTF>
+    </plugin>
+  </gazebo>
+
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertia ixx="${m * (3 * r * r + h * h) / 12}" ixy="0" ixz="0"
+      iyy="${m * (3 * r * r + h * h) / 12}" iyz="0"
+      izz="${m * r * r / 2}"
+    />
+  </xacro:macro>
+
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertia ixx="${m * (y * y + z * z) / 12}" ixy="0" ixz="0"
+      iyy="${m * (x * x + z * z) / 12}" iyz="0"
+      izz="${m * (x * x + z * z) / 12}"
+    />
+  </xacro:macro>
+  
+  <xacro:macro name="sphere_inertia" params="m r">
+    <inertia ixx="${2 * m * r * r / 5}" ixy="0" ixz="0"
+      iyy="${2 * m * r * r / 5}" iyz="0"
+      izz="${2 * m * r * r / 5}"
+    />
+  </xacro:macro>
+
+  <xacro:macro name="define_wheel" params="pos_fb pos_lr reflect_fb reflect_lr">
+    <link name="link_${pos_fb}_${pos_lr}_wheel">
+        <inertial>
+            <mass value="${wheel_mass}"/>
+            <origin rpy="0 ${pi/2} ${pi/2}" xyz="0 0 0"/>
+            <xacro:cylinder_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_thickness}" />
+        </inertial>
+        <collision>
+            <origin rpy="0 ${pi/2} ${pi/2}" xyz="0 0 0"/>
+            <geometry>
+              <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+            </geometry>`
+        </collision>
+        <visual>
+            <origin rpy="0 ${pi/2} ${pi/2}" xyz="0 0 0"/>
+            <geometry>
+              <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="joint_${pos_fb}_${pos_lr}_wheel" type="continuous">
+        <origin rpy="0 0 0" xyz="${reflect_fb*(chassis_length/2-wheel_radius)} ${reflect_lr*chassis_breadth/2} 0"/>
+        <child link="link_${pos_fb}_${pos_lr}_wheel"/>
+        <parent link="link_chassis"/>
+        <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="100" velocity="1"/>
+        <joint_properties damping="1.0" friction="1.0"/>
+    </joint>
+  </xacro:macro>
+ 
+  <link name="link_chassis">
+    <pose>0 0 0.1 0 0 0</pose>
+    <inertial>
+      <mass value="${chassis_mass}"/>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_breadth}" z="${chassis_height}" />
+    </inertial>
+    <collision name="collision_chassis">
+      <geometry>
+        <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="${chassis_length} ${chassis_breadth} ${chassis_height}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <xacro:define_wheel pos_fb="front" pos_lr="left" reflect_fb="1" reflect_lr="1" />
+  <xacro:define_wheel pos_fb="front" pos_lr="right" reflect_fb="1" reflect_lr="-1" />
+  <xacro:define_wheel pos_fb="back" pos_lr="left" reflect_fb="-1" reflect_lr="1" />
+  <xacro:define_wheel pos_fb="back" pos_lr="right" reflect_fb="-1" reflect_lr="-1" />
+
+</robot>

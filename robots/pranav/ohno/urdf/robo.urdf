@@ -1,0 +1,187 @@
+<?xml version='1.0'?>
+<robot name="lols">
+
+  <gazebo>
+    <static>False</static>
+  </gazebo>
+
+  <link name="dummy"/>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <material name="blue"> 
+        <color rgba="0 0.5 1 1"/>
+      </material>
+      <origin xyz="0 0 0.05" rpy="0 0 0" />
+      <geometry>
+          <box size="1 0.5 0.25"/>
+      </geometry>
+    </visual>
+    <!-- Base collision, mass and inertia -->
+    <collision>
+      <origin xyz="0 0 0.05" rpy="0 0 0" />
+      <geometry>
+          <box size="1 0.5 0.25"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13"/>
+    </inertial>
+    </link>
+
+    <link name="right_front">
+        <inertial>
+            <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
+            <mass value="0.5"/>
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <material name="black">
+                <color rgba="0.05 0.05 0.05 1"/>
+            </material>
+            <geometry>
+                <cylinder length="0.1" radius="0.2"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.2" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <gazebo reference ="right_front">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="joint_right_front" type="continuous">
+        <origin xyz="0.4 -0.3 0.05" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="right_front"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_front">
+        <inertial>
+            <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
+            <mass value="0.5"/>
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <material name="black">
+                <color rgba="0.05 0.05 0.05 1"/>
+            </material>
+            <geometry>
+                <cylinder length="0.1" radius="0.2"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.2" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <gazebo reference ="left_front">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="joint_left_front" type="continuous">
+    <!-- chassis_length/2-0.1*(chassis_length)-->
+        <origin xyz="0.4 0.3 0.05" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="left_front"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_back">
+        <inertial>
+            <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
+            <mass value="0.5"/>
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <material name="black">
+                <color rgba="0.05 0.05 0.05 1"/>
+            </material>
+            <geometry>
+                <cylinder length="0.1" radius="0.2"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.2" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <gazebo reference ="right_back">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="joint_right_back" type="continuous">
+        <origin xyz="-0.4 -0.3 0.05" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="right_back"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_back">
+        <inertial>
+            <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
+            <mass value="0.5"/>
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <material name="black">
+                <color rgba="0.05 0.05 0.05 1"/>
+            </material>
+            <geometry>
+                <cylinder length="0.1" radius="0.2"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.1" radiu0s="0.2" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <gazebo reference ="left_back">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="joint_left_back" type="continuous">
+        <origin xyz="-0.4 0.3 0.05" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="left_back"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+    <pose>0 0 3 0 0 0</pose>
+  </gazebo>
+
+  <joint name="dummy_joint" type="fixed">
+    <origin xyz="0.0 0.0 1" rpy="0.0 0.0 0.0"/>
+  
+    <parent link="dummy"/>
+    <child link="base_link"/>
+  </joint>
+
+</robot>

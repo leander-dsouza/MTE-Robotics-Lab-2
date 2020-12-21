@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="exp10-robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <gazebo reference="left_back">
+    <material>
+      Gazebo/Blue
+    </material>
+  </gazebo>
+
+  <gazebo reference="right_back">
+    <material>
+      Gazebo/Red
+    </material>
+  </gazebo>
+
+  <gazebo reference="right_front">
+    <material>
+      Gazebo/Gold
+    </material>
+  </gazebo>
+
+
+<gazebo reference="left_front">
+    <material>
+      Gazebo/GoldGlow
+    </material>
+  </gazebo>
+
+
+  <gazebo reference="chassis">
+    <material>
+        Gazebo/Green
+    </material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>front_left_joint</leftFrontJoint>
+      <rightFrontJoint>front_right_joint</rightFrontJoint>
+      <leftRearJoint>back_left_joint</leftRearJoint>
+      <rightRearJoint>back_right_joint</rightRearJoint>
+      <wheelSeparation>0.7</wheelSeparation>
+      <wheelDiameter>${0.2*2}</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>20</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>false</broadcastTF>
+    </plugin>
+  </gazebo>
+
+
+</robot>

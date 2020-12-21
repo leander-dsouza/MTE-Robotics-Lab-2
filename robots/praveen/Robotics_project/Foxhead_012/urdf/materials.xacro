@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="test_1"  xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <gazebo reference="wheel">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_robot_drive.so" name="4_wheeled_robot_controller">
+            <legacyMode>false</legacyMode>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>20</updateRate>
+            <leftJoint>front_left_joint</leftJoint>
+            <rightJoint>front_right_joint</rightJoint>
+            <wheelSeparation>0.3</wheelSeparation>
+            <wheelDiameter>0.2</wheelDiameter>
+            <torque>0.1</torque>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <robotBaseFrame>link_chassis</robotBaseFrame>
+        </plugin>
+    </gazebo>
+</robot>

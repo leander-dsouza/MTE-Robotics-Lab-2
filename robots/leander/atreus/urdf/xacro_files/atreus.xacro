@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="atreus">
+
+
+  
+
+<!--.................................XACRO CONSTANTS...............................-->
+
+<xacro:property name="chassis_height" value="0.1"/>
+<xacro:property name="chassis_length" value="0.8"/>
+<xacro:property name="chassis_width" value="0.6"/>
+<xacro:property name="chassis_ground_clearance" value="${0.1+chassis_height/2}"/>
+<xacro:property name="chassis_mass" value="5"/>
+
+
+<xacro:property name="wheel_mass" value="0.1"/>
+<xacro:property name="wheel_radius" value="0.1"/>
+<xacro:property name="wheel_width" value="0.1"/>
+<xacro:property name="wheel_pos" value="-0.175"/>
+<xacro:property name="wheel_base" value="${wheel_width+chassis_width}"/>
+<xacro:property name="wheel_torque" value="50"/>
+
+<xacro:arg name="camera_enabled" default="true" />
+<xacro:property name="camera_height" value="0.3"/>
+
+
+<!-- ..................................LOAD MACROS.............................-->
+
+<xacro:include filename="$(find atreus)/urdf/xacro_files/atreus.gazebo"/>
+<xacro:include filename="$(find atreus)/urdf/xacro_files/materials.xacro"/>
+<xacro:include filename="$(find atreus)/urdf/xacro_files/macros.xacro"/>
+
+<!--...............................................................................-->
+
+
+
+<!--BASE LINK-->
+
+<link name="dummy"/>
+<link name="base_link">
+
+	<collision name='collision'>
+		<origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+  		<geometry>
+    		<box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+  		</geometry>
+	</collision>
+
+	<visual>
+		<origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+  		<geometry>
+    		<box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+  		</geometry>
+  		<material name="red"/>
+	</visual>
+
+
+	<inertial>
+  		<mass value="${chassis_mass}"/>
+  		<xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_width}" z = "${chassis_height}"/>
+	</inertial>
+</link>
+
+
+<joint name="dummy_joint" type="fixed">
+	<parent link="dummy"/>
+	<child link="base_link"/>
+</joint>
+
+
+
+<!--WHEELS-->
+
+<xacro:wheel cardinality="front" dexterity="left"  fb="-1"  lr="1"  />
+<xacro:wheel cardinality="front" dexterity="right" fb="-1"  lr="-1" />
+<xacro:wheel cardinality="back"  dexterity="left"  fb="1" lr="1"  />
+<xacro:wheel cardinality="back"  dexterity="right" fb="1" lr="-1" />
+
+
+
+
+<xacro:if value="$(arg camera_enabled)">
+
+	<!--CAMERA HOLDER-->
+
+	<link name="camera_holder">
+
+		<collision name='collision'>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+	  		<geometry>
+	    		<box size="0.02 0.02 ${camera_height}"/>
+	  		</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+	  		<geometry>
+	    		<box size="0.02 0.02 ${camera_height}"/>
+	  		</geometry>
+	  		<material name="red"/>
+		</visual>
+
+		<inertial>
+	  		<mass value="0.01"/>
+	  		<xacro:box_inertia m="0.01" x="0.02" y="0.02" z = "${camera_height}"/>
+		</inertial>
+
+	</link>
+
+	<joint name="camera_holder_joint" type="fixed">
+	    <origin rpy="0 0 0" xyz="${chassis_length/4} 0 ${chassis_height/2+camera_height/2+chassis_ground_clearance}" />
+	    <parent link="base_link"/>
+	    <child link="camera_holder"/>
+	</joint>
+
+
+	<!-- INTEL REALSENSE -->
+
+    <link name="rs200_camera">
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://atreus/models/realsense_camera/meshes/realsense.dae"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.0078 0.130 0.0192"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.0615752"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="9.108e-05"
+                     ixy="0"
+                     ixz="0"
+                     iyy="2.51e-06"
+                     iyz="0"
+                     izz="8.931e-05"
+            />
+        </inertial>
+	</link>
+
+
+    <joint name="realsense_joint" type="fixed">
+        <parent link="camera_holder"/>
+        <child link="rs200_camera"/>
+		<origin rpy="0 0 0" xyz="0 0 ${camera_height/2+0.0192/2}"/>
+    </joint>
+
+    <link name="color" />
+    <link name="depth" />
+    <link name="ired1" />
+    <link name="ired2" />
+
+
+    <joint name="color_joint" type="fixed">
+        <parent link="rs200_camera" />
+        <child link="color" />
+        <origin xyz="0 -0.046 0.004" rpy="1.5707 3.1414 1.5707"/>
+    </joint>
+
+    <joint name="depth_joint" type="fixed">
+        <parent link="rs200_camera" />
+        <child link="depth" />
+        <origin xyz="0 -0.03 0.004" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="ired1_joint" type="fixed">
+        <parent link="rs200_camera" />
+        <child link="ired1" />
+        <origin xyz="0 -0.06 0.004" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="ired2_joint" type="fixed">
+        <parent link="rs200_camera" />
+        <child link="ired2" />
+        <origin xyz="0 0.01 0.004" rpy="0 0 0"/>
+    </joint>
+
+</xacro:if>
+
+
+</robot>

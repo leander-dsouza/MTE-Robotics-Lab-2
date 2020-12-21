@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+
+<robot name="test_1" xmlns:xacro = "https://www.ros.org/wiki/xacro">
+    <link name="chassis">
+        <pose>0 0 0.25 0 0 0</pose>
+        <inertial>
+            <origin xyz="0 0 0.25" rpy="0 0 0"/>
+            <mass value="5"/>
+            <inertia ixx="0.046875" ixy="0" ixz="0" iyy="0.11354" iyz="0" izz="0.14167"/>
+        </inertial>
+
+        <collision name = "chassis_collision">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.5 0.3 0.15"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.5 0.3 0.15"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0.5 1 1"/>
+            </material> 
+        </visual>                
+    </link>
+
+    <xacro:include filename='$(find Foxhead_012)/urdf/materials.xacro'/>
+    <xacro:include filename="$(find Foxhead_012)/urdf/macros.xacro"/>
+    
+    <xacro:wheel_link name_a="front_right_wheel"/>
+    <xacro:wheel_link name_a= "front_left_wheel"/>
+    <xacro:wheel_link name_a="rear_right_wheel"/>
+    <xacro:wheel_link name_a="rear_left_wheel"/>
+    
+    
+    <xacro:joint_link name_b="front_right_joint" child="front_right_wheel" origin_xyz="0.15 0.175 0"/>
+    <xacro:joint_link name_b="front_left_joint" child="front_left_wheel" origin_xyz="0.15 -0.175 0"/>
+    <xacro:joint_link name_b="rear_right_joint" child="rear_right_wheel" origin_xyz="-0.15 0.175 0"/>
+    <xacro:joint_link name_b="rear_left_joint" child="rear_left_wheel" origin_xyz="-0.15 -0.175 0"/>
+
+
+</robot>

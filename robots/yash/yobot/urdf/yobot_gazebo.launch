@@ -1,0 +1,12 @@
+<launch>
+  <!-- We resume the logic in gazebo_ros package empty_world.launch, -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find yobot)/urdf/yobot.xacro"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+  <!-- Spawn dd_robot into Gazebo -->
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model skid_steer_bot"
+    output="screen" />
+</launch>

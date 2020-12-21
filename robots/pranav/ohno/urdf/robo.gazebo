@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<robot name="lols" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <gazebo>
+        <static>False</static>
+    </gazebo>
+    <gazebo reference="base_link">
+        <material>Gazebo/CloudySky</material>
+    </gazebo>
+    <gazebo reference="front_right">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+    <gazebo reference="front_left">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+    <gazebo reference="back_right">
+        <material>Gazebo/YellowGlow </material>
+    </gazebo>
+    <gazebo reference="back_left">
+        <material>Gazebo/YellowGlow </material>
+    </gazebo>
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>front_left_joint</leftFrontJoint>
+      <rightFrontJoint>front_right_joint</rightFrontJoint>
+      <leftRearJoint>back_left_joint</leftRearJoint>
+      <rightRearJoint>back_right_joint</rightRearJoint>
+      <wheelSeparation>${chassis_breadth}</wheelSeparation>
+      <wheelDiameter>${wheel_radius*2}</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>20</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>false</broadcastTF>
+    </plugin>
+  </gazebo>
+
+</robot>
