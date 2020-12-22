@@ -23,7 +23,7 @@
 
   	<node name="spawn_model_pranav" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param pranav_robot_description -x 1.0 -y -2.0 -z 0.5 -model robo_name" />
 
-  	<node name="spawn_model_praveen" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param praveen_robot_description -x 1.0 -y 2.0 -model test_1" />
+  	<node name="spawn_model_praveen" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param praveen_robot_description -x 1.0 -y 2.0 -z 0.5 -model test_1" />
 
   	<node name="spawn_model_vidyut" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param vidyut_robot_description -x 2.0 -y -4.0 -model four_wheel_bot" />
 
