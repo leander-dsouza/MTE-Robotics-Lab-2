@@ -5,7 +5,7 @@
 
 <robot name="killer_robot" xmlns:xacro = "https://www.ros.org/wiki/xacro">
     <link name="chassis">
-        <pose>0 0 0.25 0 0 0</pose>
+
         <inertial>
             <origin xyz="0 0 0.25" rpy="0 0 0"/>
             <mass value="10"/>
@@ -30,19 +30,20 @@
         </visual>                
     </link>
 
-    <xacro:include filename='$(find exp10-robot)/urdf/materials.xacro'/>
     <xacro:include filename="$(find exp10-robot)/urdf/macros.xacro"/>
     
-    <xacro:wheel_link link_name="right_front"/>
-    <xacro:wheel_link link_name= "left_front"/>
-    <xacro:wheel_link link_name="right_back"/>
-    <xacro:wheel_link link_name="left_back"/>
+    <xacro:wheel_link link_name="front_right"/>
+    <xacro:wheel_link link_name="front_left"/>
+    <xacro:wheel_link link_name="back_right"/>
+    <xacro:wheel_link link_name="back_left"/>
     
     
-    <xacro:joint_link joint_name="right_front_joint" child="right_front" origin_xyz="1 0.375 0"/>
-    <xacro:joint_link joint_name="left_front_joint" child="left_front" origin_xyz="1 -0.375 0"/>
-    <xacro:joint_link joint_name="right_back_joint" child="right_back" origin_xyz="-1 0.375 0"/>
-    <xacro:joint_link joint_name="left_back_joint" child="left_back" origin_xyz="-1 -0.375 0"/>
+    <xacro:joint_link joint_name="front_right_joint" child="front_right" origin_xyz="1 0.375 0"/>
+    <xacro:joint_link joint_name="front_left_joint"  child="front_left"  origin_xyz="1 -0.375 0"/>
+    <xacro:joint_link joint_name="back_left_joint"   child="back_left"   origin_xyz="-1 0.375 0"/>
+    <xacro:joint_link joint_name="back_right_joint"  child="back_right"  origin_xyz="-1 -0.375 0"/>
+
+    <xacro:include filename='$(find exp10-robot)/urdf/materials.xacro'/>
 
 
 </robot>

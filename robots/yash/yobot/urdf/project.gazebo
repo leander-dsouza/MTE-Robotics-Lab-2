@@ -28,11 +28,16 @@
       <rightFrontJoint>front_wheel_right_hinge</rightFrontJoint>
       <leftRearJoint>back_wheel_left_hinge</leftRearJoint>
       <rightRearJoint>back_wheel_right_hinge</rightRearJoint>
-      <wheelSeparation>chassis_breadth</wheelSeparation>
-      <wheelDiameter>2*wheel_radius</wheelDiameter>
+      <wheelSeparation>${chassis_breadth}</wheelSeparation>
+      <wheelDiameter>${2*wheel_radius}</wheelDiameter>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <torque>1000*chassis_mass</torque>
-      <topicName>cmd_vel</topicName>
+      <torque>20</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
       <broadcastTF>false</broadcastTF>
     </plugin>
   </gazebo>

@@ -8,20 +8,32 @@
         <material>Gazebo/Blue</material>
     </gazebo>
 
+
     <gazebo>
-        <plugin filename="libgazebo_ros_robot_drive.so" name="4_wheeled_robot_controller">
-            <legacyMode>false</legacyMode>
-            <alwaysOn>true</alwaysOn>
-            <updateRate>20</updateRate>
-            <leftJoint>front_left_joint</leftJoint>
-            <rightJoint>front_right_joint</rightJoint>
-            <wheelSeparation>0.3</wheelSeparation>
-            <wheelDiameter>0.2</wheelDiameter>
-            <torque>0.1</torque>
-            <commandTopic>cmd_vel</commandTopic>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <robotBaseFrame>link_chassis</robotBaseFrame>
-        </plugin>
+      <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+        <updateRate>100.0</updateRate>
+        <robotNamespace>/</robotNamespace>
+        <leftFrontJoint>front_left_joint</leftFrontJoint>
+        <rightFrontJoint>front_right_joint</rightFrontJoint>
+        <leftRearJoint>rear_left_joint</leftRearJoint>
+        <rightRearJoint>rear_right_joint</rightRearJoint>
+        <wheelSeparation>0.3</wheelSeparation>
+        <wheelDiameter>0.2</wheelDiameter>
+        <robotBaseFrame>chassis</robotBaseFrame>
+        <torque>20</torque>
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <covariance_x>0.0001</covariance_x>
+        <covariance_y>0.0001</covariance_y>
+        <covariance_yaw>0.01</covariance_yaw>
+        <broadcastTF>false</broadcastTF>
+      </plugin>
     </gazebo>
+
+
+
+
+
+
 </robot>

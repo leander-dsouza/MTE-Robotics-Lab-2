@@ -1,9 +1,0 @@
-global_costmap:
-  global_frame: /map
-  robot_base_frame: base_link
-  update_frequency: 5.0
-  static_map: false
-  map_topic: /irdc_mars
-  rolling_window: true
-  map_width: 100
-  map_height: 100

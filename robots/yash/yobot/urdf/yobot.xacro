@@ -2,9 +2,6 @@
 
 <robot name="skid_steer_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="pi" value="3.1415926535897931"/>
-  <xacro:property name="DEG_TO_RAD" value="${PI/180.0}" />
-
   <xacro:property name="wheel_radius" value="0.2"/>
   <xacro:property name="wheel_thickness" value="0.2" />
   <xacro:property name="wheel_mass" value="0.2" />

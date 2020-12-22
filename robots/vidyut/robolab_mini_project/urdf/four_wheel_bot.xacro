@@ -8,13 +8,12 @@
 
 <xacro:include filename="$(find robolab_mini_project)/urdf/materials.xacro" />
 <xacro:include filename="$(find robolab_mini_project)/urdf/macros.xacro" />
+<xacro:include filename="$(find robolab_mini_project)/urdf/four_wheel_bot.gazebo"/>
 
   <link name="base_link">
   <pose>0 0 3 0 0 0</pose>
     <visual>
-      <material name="orange">
-      	<color rgba="1 0.6 0 1"/>
-      </material>
+      <material name="orange"/>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
           <box size="${baselw} ${baselw} ${baseh}"/>

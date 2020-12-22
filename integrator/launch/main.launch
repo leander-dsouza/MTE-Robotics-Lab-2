@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    
+	<!-- Define custom parameters for individual robots -->
+
+    <param name="aarya_robot_description" command = "$(find xacro)/xacro '$(find exp10-robot)/urdf/model.xacro'"/>
+
+  	<param name="pranav_robot_description" command="$(find xacro)/xacro $(find ohno)/urdf/robo.xacro"/>
+
+  	<param name="praveen_robot_description" command="$(find xacro)/xacro $(find Foxhead_012)/urdf/model.xacro"/>
+    
+  	<param name="vidyut_robot_description" command="$(find xacro)/xacro $(find robolab_mini_project)/urdf/four_wheel_bot.xacro"/>
+
+  	<param name="yash_robot_description" command="$(find xacro)/xacro $(find yobot)/urdf/yobot.xacro"/>
+
+    <param name="lsd_robot_description" command="$(find xacro)/xacro $(find atreus)/urdf/xacro_files/atreus.xacro"/>
+
+
+
+    <!-- Spawn models in Gazebo-->
+
+    <node name="spawn_model_aarya" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param aarya_robot_description -y 0.0 -z 0.5 -model killer_robot" />
+
+  	<node name="spawn_model_pranav" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param pranav_robot_description -x 1.0 -y -2.0 -z 0.5 -model robo_name" />
+
+  	<node name="spawn_model_praveen" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param praveen_robot_description -x 1.0 -y 2.0 -model test_1" />
+
+  	<node name="spawn_model_vidyut" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param vidyut_robot_description -x 2.0 -y -4.0 -model four_wheel_bot" />
+
+  	<node name="spawn_model_yash" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param yash_robot_description -x 2.0 -y 4.0 -model skid_steer_bot" />
+
+    <node name="spawn_model_lsd" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param lsd_robot_description -x 3.0 -model atreus" />
+
+
+    <!-- Launch Gazebo -->
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+	  <arg name="world_name" value="$(find atreus)/worlds/empty.world"/>
+	  <arg name="paused" value="false"/>
+	  <arg name="use_sim_time" value="true"/>
+	  <arg name="gui" value="true"/>
+	  <arg name="headless" value="false"/>
+	  <arg name="debug" value="false"/>
+	</include>
+
+</launch>

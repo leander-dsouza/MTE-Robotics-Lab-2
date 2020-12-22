@@ -4,7 +4,7 @@
         <static>False</static>
     </gazebo>
     <gazebo reference="base_link">
-        <material>Gazebo/CloudySky</material>
+        <material>Gazebo/Blue</material>
     </gazebo>
     <gazebo reference="front_right">
         <material>Gazebo/RedGlow</material>
@@ -30,7 +30,12 @@
       <wheelDiameter>${wheel_radius*2}</wheelDiameter>
       <robotBaseFrame>base_link</robotBaseFrame>
       <torque>20</torque>
-      <topicName>cmd_vel</topicName>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
       <broadcastTF>false</broadcastTF>
     </plugin>
   </gazebo>

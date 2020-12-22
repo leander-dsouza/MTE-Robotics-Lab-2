@@ -3,10 +3,10 @@
 
 <robot name="test_1" xmlns:xacro = "https://www.ros.org/wiki/xacro">
     <link name="chassis">
-        <pose>0 0 0.25 0 0 0</pose>
+
         <inertial>
             <origin xyz="0 0 0.25" rpy="0 0 0"/>
-            <mass value="5"/>
+            <mass value="50"/>
             <inertia ixx="0.046875" ixy="0" ixz="0" iyy="0.11354" iyz="0" izz="0.14167"/>
         </inertial>
 

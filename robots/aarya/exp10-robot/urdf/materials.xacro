@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
-<robot name="exp10-robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="killer_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 
-  <gazebo reference="left_back">
+  <gazebo reference="back_left">
     <material>
       Gazebo/Blue
     </material>
   </gazebo>
 
-  <gazebo reference="right_back">
+  <gazebo reference="back_right">
     <material>
       Gazebo/Red
     </material>
   </gazebo>
 
-  <gazebo reference="right_front">
+  <gazebo reference="front_right">
     <material>
       Gazebo/Gold
     </material>
   </gazebo>
 
 
-<gazebo reference="left_front">
+<gazebo reference="front_left">
     <material>
       Gazebo/GoldGlow
     </material>
@@ -42,11 +42,16 @@
       <rightFrontJoint>front_right_joint</rightFrontJoint>
       <leftRearJoint>back_left_joint</leftRearJoint>
       <rightRearJoint>back_right_joint</rightRearJoint>
-      <wheelSeparation>0.7</wheelSeparation>
+      <wheelSeparation>0.75</wheelSeparation>
       <wheelDiameter>${0.2*2}</wheelDiameter>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <robotBaseFrame>chassis</robotBaseFrame>
       <torque>20</torque>
-      <topicName>cmd_vel</topicName>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
       <broadcastTF>false</broadcastTF>
     </plugin>
   </gazebo>

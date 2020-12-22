@@ -11,8 +11,8 @@
 
 <arg name="latitude" default="13.352490"/>
 <arg name="longitude" default="74.792834"/>
-<arg name="camera_enabled" default="true"/>
-<arg name="world_name" default="empty.world"/>
+<arg name="camera_enabled" default="false"/>
+<arg name="world_name" default="ab1.world"/>
 
 
 
@@ -34,7 +34,7 @@
   <param name="width" type="double" value="100" />
   <param name="height" type="double" value="100" />
   <param name="shift_ns" type="double" value="0" />
-  <param name="shift_ew" type="double" value="0" />
+  <param name="shift_ew" type="double" value="0.19" />
 </group>
 
 
@@ -51,7 +51,7 @@
 
 
 <!-- Convert xacro and put on parameter server -->
-<param name="robot_description" command="$(find xacro)/xacro $(find atreus)/urdf/xacro_files/atreus.xacro
+<!-- <param name="robot_description" command="$(find xacro)/xacro $(find atreus)/urdf/xacro_files/atreus.xacro
 
     camera_enabled:=$(arg camera_enabled)
 
@@ -74,7 +74,7 @@
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
-    type="robot_state_publisher" />
+    type="robot_state_publisher" /> -->
   
 
 </launch>
