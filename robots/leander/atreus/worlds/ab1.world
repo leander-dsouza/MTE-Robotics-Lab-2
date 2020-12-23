@@ -23,6 +23,88 @@
 
 <actor name="actor_walk--actor1">
        <skin>
+          <filename>walk.dae</filename>
+          <scale>1.0</scale>
+       </skin>
+       <pose>0 0 0 0 0 0</pose>
+       <animation name="walking">
+          <filename>walk.dae</filename>
+          <scale>1.000000</scale>
+          <interpolate_x>true</interpolate_x>
+       </animation>
+       <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="walking">
+        <waypoint>
+          <time>0</time>
+          <pose>-2 -10 0 0 0 1.72</pose>
+        </waypoint>
+        <waypoint>
+          <time>20</time>
+          <pose>-5 10 0 0 0 1.72</pose>
+        </waypoint>
+        <waypoint>
+          <time>25</time>
+          <pose>-5 10 0 0 0 4.86</pose>
+        </waypoint>
+        <waypoint>
+          <time>45</time>
+          <pose>-2 -10 0 0 0 4.86</pose>
+        </waypoint>
+        <waypoint>
+          <time>50</time>
+          <pose>-2 -10 0 0 0 1.72</pose>
+        </waypoint>
+      </trajectory>
+       </script>
+</actor>
+
+
+<actor name="actor_walk--actor2">
+       <skin>
+          <filename>walk.dae</filename>
+          <scale>1.0</scale>
+       </skin>
+       <pose>0 0 0 0 0 0</pose>
+       <animation name="walking">
+          <filename>walk.dae</filename>
+          <scale>1.000000</scale>
+          <interpolate_x>true</interpolate_x>
+       </animation>
+       <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="walking">
+        <waypoint>
+          <time>0</time>
+          <pose>5 -10 0 0 0 1.72</pose>
+        </waypoint>
+        <waypoint>
+          <time>20</time>
+          <pose>2 10 0 0 0 1.72</pose>
+        </waypoint>
+        <waypoint>
+          <time>25</time>
+          <pose>2 10 0 0 0 4.86</pose>
+        </waypoint>
+        <waypoint>
+          <time>45</time>
+          <pose>5 -10 0 0 0 4.86</pose>
+        </waypoint>
+        <waypoint>
+          <time>50</time>
+          <pose>5 -10 0 0 0 1.72</pose>
+        </waypoint>
+      </trajectory>
+       </script>
+</actor>
+
+
+<actor name="actor_moonwalk--actor1">
+       <skin>
           <filename>moonwalk.dae</filename>
           <scale>1.0</scale>
        </skin>
@@ -39,30 +121,171 @@
           <trajectory id="0" type="moon_walking">
         <waypoint>
           <time>0</time>
-          <pose>-2 -10 0 0 0 1.57</pose>
+          <pose>7 -10 0 0 0 1.67</pose>
         </waypoint>
         <waypoint>
           <time>20</time>
-          <pose>-2 10 0 0 0 1.57</pose>
+          <pose>5 10 0 0 0 1.67</pose>
         </waypoint>
         <waypoint>
           <time>25</time>
-          <pose>-2 10 0 0 0 4.71</pose>
+          <pose>5 10 0 0 0 4.8100000000000005</pose>
         </waypoint>
         <waypoint>
           <time>45</time>
-          <pose>-2 -10 0 0 0 4.71</pose>
+          <pose>7 -10 0 0 0 4.8100000000000005</pose>
         </waypoint>
         <waypoint>
           <time>50</time>
-          <pose>-2 -10 0 0 0 1.57</pose>
+          <pose>7 -10 0 0 0 1.67</pose>
         </waypoint>
       </trajectory>
        </script>
-    </actor>
+</actor>
 
 
+<actor name="actor_moonwalk--actor2">
+       <skin>
+          <filename>moonwalk.dae</filename>
+          <scale>1.0</scale>
+       </skin>
+       <pose>0 0 0 0 0 0</pose>
+       <animation name="moon_walking">
+          <filename>moonwalk.dae</filename>
+          <scale>1.000000</scale>
+          <interpolate_x>true</interpolate_x>
+       </animation>
+       <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="moon_walking">
+        <waypoint>
+          <time>0</time>
+          <pose>-5 -10 0 0 0 1.67</pose>
+        </waypoint>
+        <waypoint>
+          <time>20</time>
+          <pose>-7 10 0 0 0 1.67</pose>
+        </waypoint>
+        <waypoint>
+          <time>25</time>
+          <pose>-7 10 0 0 0 4.8100000000000005</pose>
+        </waypoint>
+        <waypoint>
+          <time>45</time>
+          <pose>-5 -10 0 0 0 4.8100000000000005</pose>
+        </waypoint>
+        <waypoint>
+          <time>50</time>
+          <pose>-5 -10 0 0 0 1.67</pose>
+        </waypoint>
+      </trajectory>
+       </script>
+</actor>
 
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree1</name>
+    <pose>-8.44 -4.17 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree2</name>
+    <pose>-10.44 -1.74 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree3</name>
+    <pose>-14.53 2.676 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree4</name>
+    <pose>-18.11 6.06 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree5</name>
+    <pose>-13.53 10 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree6</name>
+    <pose>-1.59 26.184 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree7</name>
+    <pose>2.8 24.544 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree8</name>
+    <pose>8.04 21.995 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree9</name>
+    <pose>12.84 23.119 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree10</name>
+    <pose>10.32 13.316 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree11</name>
+    <pose>16.999 17.595 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://pine_tree</uri>
+    <name>pine_tree--tree12</name>
+    <pose>15.49 12.996 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://oak_tree</uri>
+    <name>oak_tree--tree1</name>
+    <pose>-21.513 11.923 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://oak_tree</uri>
+    <name>oak_tree--tree2</name>
+    <pose>-25.049 14.968 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://oak_tree</uri>
+    <name>oak_tree--tree3</name>
+    <pose>-18.344 18.682 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://oak_tree</uri>
+    <name>oak_tree--tree4</name>
+    <pose>7.816 28.2704 0 0 0 0</pose>
+</include>
+
+<include>
+    <uri>model://oak_tree</uri>
+    <name>oak_tree--tree5</name>
+    <pose>20.478 24.383 0 0 0 0</pose>
+</include>
 
 
   </world>

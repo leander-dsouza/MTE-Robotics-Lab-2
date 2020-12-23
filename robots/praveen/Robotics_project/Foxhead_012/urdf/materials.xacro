@@ -17,10 +17,10 @@
         <rightFrontJoint>front_right_joint</rightFrontJoint>
         <leftRearJoint>rear_left_joint</leftRearJoint>
         <rightRearJoint>rear_right_joint</rightRearJoint>
-        <wheelSeparation>0.3</wheelSeparation>
+        <wheelSeparation>0.35</wheelSeparation>
         <wheelDiameter>0.2</wheelDiameter>
         <robotBaseFrame>chassis</robotBaseFrame>
-        <torque>20</torque>
+        <torque>0.55</torque>
         <commandTopic>cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>
