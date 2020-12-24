@@ -10,9 +10,9 @@ A collective codebase inclusive of all experiments and post lab exercises
 
 ## Installation
 
-* Clone the repository:
+* Clone the repository at your `$WORKSPACE/src`:
 
-      cd ~/catkin_ws/src && git clone https://github.com/leander-dsouza/MTE-Robotics-Lab-2.git
+      git clone https://github.com/leander-dsouza/MTE-Robotics-Lab-2.git
       
 * Build the newly cloned packages at the root of your workspace:
 
@@ -20,7 +20,7 @@ A collective codebase inclusive of all experiments and post lab exercises
       
 * Install `python-rosdep` for resolving your workspaces' dependencies (**Don't install `rosdep2` as it will break your ros system**):
 
-      sudo apt-get install python-rosdep && sudo rosdep init && rosdep update
+      sudo apt-get install python3-rosdep && sudo rosdep init && rosdep update
       
 * To install all the dependencies of your workspace:
 
@@ -28,7 +28,7 @@ A collective codebase inclusive of all experiments and post lab exercises
 
 * To prevent repeated sourcing of your workspace's devel bash scripts, add the corresponding line and finally execute the entire bash script:
 
-      echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc && source ~/.bashrc
+      echo "source $WORKSPACE_DIR/devel/setup.bash" >> ~/.bashrc && source ~/.bashrc
 
 ## Usage       
 
