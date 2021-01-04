@@ -26,10 +26,10 @@
       <rightFrontJoint>front_right_joint</rightFrontJoint>
       <leftRearJoint>back_left_joint</leftRearJoint>
       <rightRearJoint>back_right_joint</rightRearJoint>
-      <wheelSeparation>${chassis_breadth}</wheelSeparation>
+      <wheelSeparation>${0.6}</wheelSeparation>
       <wheelDiameter>${wheel_radius*2}</wheelDiameter>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <torque>20</torque>
+      <torque>50</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>

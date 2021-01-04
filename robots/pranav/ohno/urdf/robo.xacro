@@ -3,11 +3,11 @@
 
   <xacro:property name="wheel_radius" value="0.2"/>
   <xacro:property name="wheel_thickness" value="0.1" />
-  <xacro:property name="wheel_mass" value="0.2" />
+  <xacro:property name="wheel_mass" value="0.1" />
   <xacro:property name="chassis_length" value="1" />
   <xacro:property name="chassis_breadth" value="0.5" />
   <xacro:property name="chassis_height" value="0.25" />
-  <xacro:property name="chassis_mass" value="5" />
+  <xacro:property name="chassis_mass" value="0.5" />
 
   <xacro:include filename="$(find ohno)/urdf/materials.xacro"/>
   <xacro:include filename="$(find ohno)/urdf/wheel.xacro"/>
@@ -17,8 +17,6 @@
 
   <!-- Base Link -->
   <link name="base_link">
-    <pose>0 0 3 0 0 0</pose>
-
     <visual>
       <material name="white"/>
       <origin xyz="0 0 0.05" rpy="0 0 0" />
@@ -41,9 +39,9 @@
     </inertial>
   </link>
 
-  <xacro:define_wheel name_a="front_right" name_b="front_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 -0.3 0.05"/>
-  <xacro:define_wheel name_a="front_left" name_b="front_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 0.3 0.05"/>
-  <xacro:define_wheel name_a="back_right" name_b="back_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 -0.3 0.05"/>
-  <xacro:define_wheel name_a="back_left" name_b="back_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 0.3 0.05"/>
+  <xacro:define_wheel name_a="front_right" name_b="front_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 -0.3 0"/>
+  <xacro:define_wheel name_a="front_left" name_b="front_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="0.4 0.3 0"/>
+  <xacro:define_wheel name_a="back_right" name_b="back_right_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 -0.3 0"/>
+  <xacro:define_wheel name_a="back_left" name_b="back_left_joint" rad="${wheel_radius}" thicc="${wheel_thickness}" origin_xyz="-0.4 0.3 0"/>
 
 </robot>
